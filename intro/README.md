@@ -5,7 +5,7 @@
 - Working on EU funding applying & managing system for Ministry of Employment and the Economy (Työ- ja Elinkeinoministeriö)
 
 ## Slides
-Available at [node-training.herokuapp.com](http://node-training.herokuapp.com/)
+Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.herokuapp.com/)
 
 ---
 
