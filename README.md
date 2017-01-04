@@ -4,6 +4,7 @@
 
 - [Introduction](intro/README.md)
 - [Node.js](node/README.md)
+- [Express](express/README.md)
 
 [Useful Resources](useful-resources/README.md)
 
