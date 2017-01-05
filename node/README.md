@@ -40,6 +40,10 @@
 
 ---
 # Usage
+Run the script with
+```
+node my-script.js
+```
 
 ---
 # Debugging
@@ -48,6 +52,33 @@
 # npm
 - npm (Node Package Manager) is the package manager for Node.js
 - Has the most modules of any package manager for any language
+
+---
+# Global vs. local packages
+Global packages:
+- Installed globally with `-g` switch for `npm install`
+- Provide some command-line commands
+
+Local packages
+- Installed to the `node_modules` folder under current folder
+- Available only for the current project with `require`
+
+---
+# Global vs. local packages - usage
+Global:
+```
+npm install -g angular-cli
+ng new MY_PROJECT
+```
+
+Local:
+```
+npm install underscore
+```
+
+```
+const _ = require('underscore')
+```
 
 ---
 # Package.json
