@@ -2,7 +2,7 @@
 
 ---
 
-# What is it?
+# What is Node.js?
 - "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine." 
 - "Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient."
 - "Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world."
@@ -173,7 +173,7 @@ Using the dependencies: `const express = require('express')`
 
 ---
 # Exercises
-1. Create a folder `ex1` and initialize it as npm module
-2. Create a script that prints "ex1 started" and run the script with `node` command
+1. Create a folder `ex-node` and initialize it as npm module
+2. Create a script that prints "ex-node started" and run the script with `node` command
 3. Add a `start` script to `package.json` and use it to run the script as `npm start`
 4. Add [`strman`](https://github.com/dleitee/strman) as a dependency (should also be in `package.json`) and use it for logging.
