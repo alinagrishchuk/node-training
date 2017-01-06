@@ -5,6 +5,8 @@
 - [Introduction](intro/README.md)
 - [Node.js](node/README.md)
 - [Express](express/README.md)
+- [Databases](databases/README.md)
+- [Misc](misc/README.md)
 
 [Useful Resources](useful-resources/README.md)
 

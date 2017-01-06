@@ -46,6 +46,26 @@ node my-script.js
 ```
 
 ---
+# Exercise
+Create file `script.js` that simply calls `console.log('It is alive')`, and run it.
+
+---
+# Accessing the environment variables
+- Available as `process.env.VARIABLE`:
+```
+console.log(process.env.VARIABLE);
+```
+
+On Windows you can set the environment variables for script as:
+```
+VARIABLE=ABC node my-script.js
+```
+
+---
+# Exercise
+Modify the previously created `script.js` to print `SECRET_TOKEN` given as environment variable and run it.
+
+---
 # Debugging
 
 ---
@@ -162,14 +182,6 @@ Using the dependencies: `const express = require('express')`
 }
 ```
 - Also available for other commands like `install`
-
----
-# Yarn package manager
-- [Yarn](https://yarnpkg.com/) is a new package manager for Node.js projects
-- Mostly has the same API as for npm
-- Faster and more reliable than npm
-- Also supports lockfile (`yarn.lock`) to lock all the dependency versions (similar to npm shrinkwrap)
-- Quite new and only just getting stable
 
 ---
 # Exercises
