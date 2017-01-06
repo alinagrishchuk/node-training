@@ -9,7 +9,7 @@
 
 ---
 # History
-- Initial release in January 2010-
+- Initial release in January 2010
 - Current stable major 4.0.0 out in April 2014
 - 4.14.0 latest as of 16.6.2016
 - V5 in alpha.2
