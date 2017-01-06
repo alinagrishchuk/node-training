@@ -349,5 +349,5 @@ cd MY_PROJECT
 npm install
 npm start
 ```
-- Generates ES5 code (`var`, `function`), but ES6 support on almost ready Pull Request
+- Generates ES5 code (`var`, `function`), but ES6 support on almost ready [Pull Request](https://github.com/expressjs/generator/pull/146)
 - Supports also template engines
