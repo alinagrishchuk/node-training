@@ -101,6 +101,49 @@ const _ = require('underscore')
 ```
 
 ---
+# Sharing code between multiple files
+- `module.exports` is used to declare what is exported from the file
+
+_file1.js_
+```
+function getText() {
+    return 'My text';
+}
+
+module.exports = getText;
+```
+
+- `require()` with local path (`.` for current folder) is used to get that value
+
+_file2.js_
+```
+const getText = require('./file1'):
+console.log(getText());
+```
+
+---
+# Sharing code between files
+- Often the exports are objects to allow multiple things to be exported:
+
+_get-methods.js_
+```
+module.exports = {
+    getA: () => 'A', 
+    getB: () => 'B'
+};
+```
+
+_index.js_
+```
+const getMethods = require('./get-methods');
+console.log(getMethods.getA());
+```
+
+---
+# Exercise
+Declare another file where you export a function to give the value to be logged and use it in the `script.js`.
+
+---
 # Package.json
 - JSON file to define an npm project
 - Can contain:
