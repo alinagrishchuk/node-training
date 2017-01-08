@@ -1,9 +1,11 @@
 # Misc
 - Optimizing development flow
-- Authentication
+- Authentication & Authorization
 - Logging
+- Compression
 - Deploying
 - Security
+- JSON template engine
 
 ---
 # Optimizing development flow
@@ -31,9 +33,112 @@ supervisor index.js
 
 ---
 # Authentication
+- Process of validating the user is who she claims to be
+- Usually done online by user providing username and password
+- For APIs tokens are usually used because:
+    - Single user can have multiple tokens
+    - If one token is exposed, it can be easily disabled
+    - Tokens can have explicit access restrictions and thus prevent possible damages on exposure
+
+---
+# Authentication in Express.js
+- Implementing security-related things yourself is generally not smart
+- Still, for the sake of example, authentication can be implemented as Express.js middleware:
+```
+app.use((req, res, next) => {
+    if (req.query.token === 'SECRET_TOKEN_TOKEN') {
+        next();
+    }
+    else {
+        res.status(401).send('Please sign in.');
+    }
+});
+```
 
 ---
 # Passport.js
+- De facto standard authentication solution for Express.js applications
+- Flexible & does not mount routes
+- Supports OAuth (Facebook, Twitter, etc.) & OpenID ()
+- Has over 300 login strategies available
+
+---
+# Passport.js - Username and password authentication (1)
+Install:
+```
+npm install --save passport
+```
+
+Register the strategy:
+```
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+passport.use(new LocalStrategy(
+    (username, password, done) => {
+        if (username !== process.env.username || password !== process.env.password) {
+            done(null, false, {message: 'Incorrect credentials.'});
+            return;
+        }
+        return done(null, {});
+    }
+));
+app.use(passport.initialize());
+```
+
+---
+# Passport.js - Username and password authentication (2)
+Login route:
+```
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  (req, res) => {
+    res.redirect('/');
+  });
+```
+
+---
+# Token-based authentication
+Ready strategy for token-basen authentication is available with `passport-localapikey` module:
+```
+passport.use(new LocalAPIKeyStrategy(
+  (apikey, done) => {
+    if (apikey !== process.env.TOKEN) { return done(null, false); }
+    return done(null, {});
+  }
+));
+```
+
+---
+# Authentication errors
+- If authentication credentials are bad, `done(null, false)` should be called
+- If there happens an error, `done(error)` should be called
+
+---
+# Authorization
+- After user is identified, it needs to be determined whether user has access to certain resource
+- Often much more complicated than authentication
+
+---
+# acl
+- Access Control List (ACL) module for authorization
+- Role-based, hierarchical access control
+- Supports Redis, MongoDB and in-memory backends with also 3rd-party backends for firebase, knex, etc.
+
+---
+# JWT
+
+---
+# Compression
+To enable Gzip/deflate compression, `compression` can be used
+
+```
+npm install --save compression
+```
+
+```
+const compression = require('compression');
+app.use(compression);
+```
 
 ---
 # Logging
@@ -245,3 +350,51 @@ app.use(cors());
 ---
 # Exercise
 Implement CORS so that your application only allows CORS for POST on path `/cors-enabled`.
+
+---
+# JSON template engine
+- Express.js can send JSON out-of-the-box
+- Sometimes there is a need for more granular control
+- Example use cases:
+    - Filtering our sensitive user data like passwords
+    - Values need to be formatted before sending
+    - Apply sub views
+    - Caching views
+    
+---
+# JSON template engine - Installation
+```
+npm install --save express-json-views
+```
+
+```
+const viewEngine = require('express-json-views');
+app.engine('json', viewEngine({
+       helpers: require('./views/helpers')
+   }));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'json');
+```
+
+---
+# JSON Template engine - Views
+```
+{
+    "id": {},
+    "slug": {
+        "format": "getPostSlug"
+    },
+    "content": {
+        "from": "content_text"
+    },
+    "comments": {
+        "view": "comment"
+    }
+}
+```
+- Each key will be rendered to the response
+- Values are interpreted as:
+    - *{}*: Copies the value from the passed data.
+    - *from*: Uses this value to lookup the value in the data object instead of the view key.
+    - *format*: Calls a helper function with this name. Passes the value and the full object as arguments.
+    - *view*: Defines the view if this value should be rendered with a different view. Value must be an Array or objects or an Object.
