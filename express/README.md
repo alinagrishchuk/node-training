@@ -264,7 +264,7 @@ app.use(express.static('files'));
 # Error handling
 - Calling the `next` with parameter will invoke error handler.
 - Custom error handlers can be registered by providing middleware with 4 parameters:
-```
+```javascript
 app.use((err, req, res, next) => {
     console.log(`Error happened: ${err}`);
 });
@@ -293,8 +293,14 @@ Write your own error handler, that catches 404 and shows error message
 ---
 # Debug mode
 To see internal logging of Express.js, launch the application as:
-- Windows: `set DEBUG=express:* & node index.js`
-- Linux: `DEBUG=express:* node index.js`
+- Windows: 
+```shell
+set DEBUG=express:* & node index.js
+```
+- Linux: 
+```
+DEBUG=express:* node index.js
+```
 
 ---
 # Exercise
