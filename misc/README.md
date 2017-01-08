@@ -1,5 +1,6 @@
 # Misc
 - Optimizing development flow
+- Authentication
 - Logging
 - Deploying
 - Security
@@ -27,6 +28,12 @@ npm install supervisor -g
 supervisor index.js
 ```
 - Another possibility: [nodemon](https://github.com/remy/nodemon)
+
+---
+# Authentication
+
+---
+# Passport.js
 
 ---
 # Logging
@@ -123,7 +130,50 @@ Add new end-point `/print-logs` that reads all the logs from the just implemente
 
 ---
 # Deploying
+Most used solutions nowadays:
+- AWS Elastic Beanstalk
+- Docker
+- Heroku
 
+---
+# AWS Elastic Beanstalk
+- Just deploy your code and Beanstalk will take care of rest
+- Creates and configures resources needed based on application type (e.g. AWS EC2 instances)
+- Supports many languages and frameworks
+
+---
+# Beanstalk demo
+
+---
+# Docker
+- Topic for its own training
+- "Build once, run anywhere"
+- Virtualized environment with everything necessary installed
+
+---
+# Heroku
+- Really easy to get started
+- Detects application type based on files, downloads dependencies and runs it
+- Can deploy every time something is pushed to the GitHub
+- Free tier available
+- Easy to scale
+- Usable URL for app: APP_NAME.herokuapp.com (e.g. URL of these slides)
+
+---
+# Heroku free tier
+- Can only run certain amount of hours per month
+- Go to sleep after 30min inactivity
+- Start-up is somewhat slow 
+
+---
+# Procfile
+- Format for specifying what Heroku should run
+- Simple text file in the root of project
+- Format:
+```
+web: node index.js
+worker: node worker.js
+```
 
 ---
 # Security
@@ -166,6 +216,13 @@ Enable every default module of Helmet but the `X-Download-Options` header settin
 
 ---
 # CORS
+- AJAX calls to other domains are forbidden by default by the [same-origin security policy](https://en.wikipedia.org/wiki/Same-origin_policy)
+- Implemented by basically all browsers
+- Can be relaxed by enabling `Access-Control-*` headers
+
+---
+# CORS - Flow
+![CORS flow](misc/cors.png "CORS flow")
 
 ---
 # CORS with Express.js
