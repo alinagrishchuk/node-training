@@ -238,7 +238,7 @@ As noted earlier, each router can have its own middleware, apply middleware to t
 - `express.static` middleware to serve to serve static files (HTML, CSS, PDF, etc.)
 - Usage:
 Assuming there is `public` folder with `my.txt` inside it in the root:
-```
+```javascript
 app.use(express.static('public'));
 ```
 Files can now be accessed as `localhost:3000/my.txt`
