@@ -192,6 +192,16 @@ Logs `ABC`
 - Each handler needs to call either `next` or send a response, otherwise request will hang.
 
 ---
+# Mounting
+Middleware can also be mounted on certain paths so it won't be ran on every request:
+```
+app.use('/middleware', (req, res, next) => {
+    console.log('Middleware used.');
+    next();
+});
+```
+
+---
 # Example: JSON body parser
 - [body-parser](https://github.com/expressjs/body-parser) implements one middleware for parsing JSON etc.
 - Usage:
