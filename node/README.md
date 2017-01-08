@@ -140,6 +140,19 @@ console.log(getMethods.getA());
 ```
 
 ---
+# Sharing code between files
+- Defining all exports with `module.exports` at the bottom of file is somewhat clear solution
+- What Node.js does internally, is that it includes the following line at the start of each file:
+```
+var exports = module.exports = {};
+```
+because of this we can also write our code this way:
+```
+exports.getA = () => 'A'; 
+exports.getB = () => 'B';
+```
+
+---
 # Exercise
 Declare another file where you export a function to give the value to be logged and use it in the `script.js`.
 
@@ -232,3 +245,157 @@ Using the dependencies: `const express = require('express')`
 2. Create a script that prints "ex-node started" and run the script with `node` command
 3. Add a `start` script to `package.json` and use it to run the script as `npm start`
 4. Add [`strman`](https://github.com/dleitee/strman) as a dependency (should also be in `package.json`) and use it for logging.
+
+---
+# Testing
+- Two main libraries are Jasmine and Mocha - both equally used
+- Mocha provides a little more flexibility (e.g. no assertion or mocking included)
+- Jasmine is batteries-included solution
+- Same high-level API for both
+- On this training Jasmine is used
+
+---
+# Jasmine
+- Behavior Driven Development testing framework
+- For both browser and Node.js projects
+- Runners also available for Ruby-based (Rails, Sinatra, etc.) and Python-based (Django, Flask, etc.) web frameworks
+
+---
+# Jasmine - Usage
+Installation:
+```
+npm install --save jasmine
+jasmine init
+```
+Initializing will create `jasmine.json` for configuration such as test file look-up path
+
+Run jasmine tests:
+```
+jasmine
+``` 
+
+---
+# Exercise
+Run the above commands to find out there aren't any test cases yet
+
+---
+# Jasmine test case
+Example spec:
+```
+describe("A suite is just a function", () => {
+  it("and so is a spec", () => {
+    const a = true;
+    expect(a).toBe(true);
+  });
+});
+```
+
+---
+# Setup and tear-down
+- `beforeEach`, `afterEach`, `beforeAll`, and `afterAll`
+
+---
+# Exercise
+- Write a function `getData` (in test file or as seperate file) that returns data as `{persons: [{name: 'obj1', name: 'obj2'}]}`.
+- To test your function, check that it returns an object with list `persons` of length 2.
+
+---
+# Asynchronous tests
+Consider we have a function that is asynchronous (timeouts, AJAX requests, etc.):
+```
+const myFn = (cb) => {
+    setTimeout(() => {
+        cb(200, {items: []});
+    }, 1000);
+};
+```
+
+to test this, we need to register appropriate callback and when it is called check the parameters
+```
+describe("..", () => {
+    it("..", (done) => {
+        myFn((status, data) => {
+            expect(status).toBe(200);
+            expect(data.items.length).toBe(0);
+            done();
+        });
+    });
+});
+```
+
+---
+# Exercise
+Since the data of last exercise actually needs to be retrieved from the server, adjust the function to take a callback, that is invoked after 1 second with data as parameter.
+Once modified, make your test compliant with this asynchronous behaviour.
+
+---
+# Matchers
+- Matchers are used to determine whether the value produced by code under test is correct
+- Jasmine provides a lot of [ready-made matchers](https://jasmine.github.io/2.5/introduction#section-Included_Matchers), such as:
+    - `toEqual`, `toBe`
+    - `toBeDefined`, `toBeNull`
+    - `toContain`
+    - `toThrow`
+- You can also make your own matchers
+
+---
+# Custom matcher
+- Repetitive matching can be implemented as custom matcher
+- Matchers need to be registered in `beforeEach` block with `jasmine.addMatchers`
+- `addMatchers` takes an object containing matcher factories:
+```
+jasmine.addMatchers({
+    toBeOneBiggerThan: () => {
+        return {
+            compare: (actual, expected) => {
+                const pass = actual === expected + 1;
+                const message = pass ? '' : `Expected ${actual} to be ${expected + 1}`; 
+                return {
+                    pass,
+                    message
+                }
+            }
+        }
+    }
+});
+expect(3).toBeOneBiggerThan(2);
+```
+
+---
+# Exercise
+Make a custom matcher that checks that array passed to it contains the two objects you used in earlier exercise.
+Use this new matcher instead of current check for two items.
+
+---
+# Spies
+- Mocking is implemented in Jasmine as spies
+- Makes it possible to track calls to functions
+- Can also be used to change return values of functions
+- Own set of matchers like `toHaveBeenCalled`, `toHaveBeenCalledTimes` and `toHaveBeenCalledWith`
+
+---
+# Spies - Example
+```
+describe("A spy, when configured to call through", () => {
+    let foo, bar, fetchedBar;
+    beforeEach(() => {
+        foo = {
+            setBar: value => bar = value,
+            getBar: () => bar
+        };
+        spyOn(foo, 'getBar').and.callThrough();
+        foo.setBar(123);
+        fetchedBar = foo.getBar();
+    });
+
+    it("tracks that the spy was called", () => {
+        expect(foo.getBar).toHaveBeenCalled();
+    });
+    it("should not affect other functions", () => {
+        expect(bar).toEqual(123);
+    });
+    it("when called returns the requested value", () => {
+        expect(fetchedBar).toEqual(123);
+    });
+});
+```
