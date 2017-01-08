@@ -328,8 +328,8 @@ Enable every default module of Helmet but the `X-Download-Options` header settin
 - Can be relaxed by enabling `Access-Control-*` headers
 
 ---
-# CORS - Flow
 background-image: url(misc/cors.png)
+# CORS - Flow
 
 ---
 # CORS with Express.js
