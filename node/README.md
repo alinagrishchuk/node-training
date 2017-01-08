@@ -41,7 +41,7 @@
 ---
 # Usage
 Run the script with
-```
+```shell
 node my-script.js
 ```
 
@@ -52,12 +52,12 @@ Create file `script.js` that simply calls `console.log('It is alive')`, and run 
 ---
 # Accessing the environment variables
 - Available as `process.env.VARIABLE`:
-```
+```javascript
 console.log(process.env.VARIABLE);
 ```
 
 On Windows you can set the environment variables for script as:
-```
+```shell
 VARIABLE=ABC node my-script.js
 ```
 
@@ -86,17 +86,17 @@ Local packages
 ---
 # Global vs. local packages - usage
 Global:
-```
+```shell
 npm install -g angular-cli
 ng new MY_PROJECT
 ```
 
 Local:
-```
+```shell
 npm install underscore
 ```
 
-```
+```javascript
 const _ = require('underscore')
 ```
 
@@ -105,7 +105,7 @@ const _ = require('underscore')
 - `module.exports` is used to declare what is exported from the file
 
 _file1.js_
-```
+```javascript
 function getText() {
     return 'My text';
 }
@@ -116,7 +116,7 @@ module.exports = getText;
 - `require()` with local path (`.` for current folder) is used to get that value
 
 _file2.js_
-```
+```javascript
 const getText = require('./file1'):
 console.log(getText());
 ```
@@ -126,7 +126,7 @@ console.log(getText());
 - Often the exports are objects to allow multiple things to be exported:
 
 _get-methods.js_
-```
+```javascript
 module.exports = {
     getA: () => 'A', 
     getB: () => 'B'
@@ -134,7 +134,7 @@ module.exports = {
 ```
 
 _index.js_
-```
+```javascript
 const getMethods = require('./get-methods');
 console.log(getMethods.getA());
 ```
@@ -143,11 +143,11 @@ console.log(getMethods.getA());
 # Sharing code between files
 - Defining all exports with `module.exports` at the bottom of file is somewhat clear solution
 - What Node.js does internally, is that it includes the following line at the start of each file:
-```
+```javascript
 var exports = module.exports = {};
 ```
 because of this we can also write our code this way:
-```
+```javascript
 exports.getA = () => 'A'; 
 exports.getB = () => 'B';
 ```
@@ -179,7 +179,7 @@ Declare another file where you export a function to give the value to be logged 
 ---
 # Initializing new project
 Run
-```
+```shell
 npm init
 ```
 
@@ -188,12 +188,12 @@ and answer all the interactive questions to populate simple package.json
 ---
 # Installing dependencies
 Install all dependencies (`dependencies` & `devDependencies`):
-```
+```shell
 npm install
 ```
 
 Install only `dependencies`:
-```
+```shell
 npm install --production
 ```
 Same happens if `NODE_ENV` environment variable is set to _production_.
@@ -203,7 +203,7 @@ All dependencies are stored to `node_modules` folder.
 ---
 # Adding new dependencies
 To add a new dependency for your project, you can use 
-```
+```shell
 npm install --save express@4.14.0
 ```
 which installs the new package to `node_modules` and adds it to the `package.json`.
@@ -216,7 +216,7 @@ Using the dependencies: `const express = require('express')`
 # Custom npm scripts
 `package.json` can contain field called `scripts` that contains an object with custom scripts to be executed with `npm run SCRIPT_NAME`.
  
-```
+```shell
 {
     "scripts": {
         "test": "karma run",
@@ -228,7 +228,7 @@ Using the dependencies: `const express = require('express')`
 ---
 # Pre and post
 - All scrips can have pre and post steps
-```
+```json
 {
     "scripts": {
         "pretest": "do-something-before-test",
@@ -263,14 +263,14 @@ Using the dependencies: `const express = require('express')`
 ---
 # Jasmine - Usage
 Installation:
-```
+```shell
 npm install --save jasmine
 jasmine init
 ```
 Initializing will create `jasmine.json` for configuration such as test file look-up path
 
 Run jasmine tests:
-```
+```shell
 jasmine
 ``` 
 
@@ -281,7 +281,7 @@ Run the above commands to find out there aren't any test cases yet
 ---
 # Jasmine test case
 Example spec:
-```
+```javascript
 describe("A suite is just a function", () => {
   it("and so is a spec", () => {
     const a = true;
@@ -293,6 +293,14 @@ describe("A suite is just a function", () => {
 ---
 # Setup and tear-down
 - `beforeEach`, `afterEach`, `beforeAll`, and `afterAll`
+- Example:
+```javascript
+describe('', () => {
+    beforeEach(() => {
+        console.log('This is printed before each it block');
+    });
+});
+```
 
 ---
 # Exercise
@@ -302,7 +310,7 @@ describe("A suite is just a function", () => {
 ---
 # Asynchronous tests
 Consider we have a function that is asynchronous (timeouts, AJAX requests, etc.):
-```
+```javascript
 const myFn = (cb) => {
     setTimeout(() => {
         cb(200, {items: []});
@@ -311,7 +319,7 @@ const myFn = (cb) => {
 ```
 
 to test this, we need to register appropriate callback and when it is called check the parameters
-```
+```javascript
 describe("..", () => {
     it("..", (done) => {
         myFn((status, data) => {
@@ -343,7 +351,7 @@ Once modified, make your test compliant with this asynchronous behaviour.
 - Repetitive matching can be implemented as custom matcher
 - Matchers need to be registered in `beforeEach` block with `jasmine.addMatchers`
 - `addMatchers` takes an object containing matcher factories:
-```
+```javascript
 jasmine.addMatchers({
     toBeOneBiggerThan: () => {
         return {
@@ -375,7 +383,7 @@ Use this new matcher instead of current check for two items.
 
 ---
 # Spies - Example
-```
+```javascript
 describe("A spy, when configured to call through", () => {
     let foo, bar, fetchedBar;
     beforeEach(() => {

@@ -16,12 +16,12 @@
 
 ---
 # Installation
-```
+```shell
 npm install express --save
 ```
 
 _index.js_
-```
+```javascript
 const express = require('express');
 const app = express();
 
@@ -32,14 +32,14 @@ app.get('/', (req, res) => {
 app.listen(3000);
 ```
 
-```
+```shell
 node index.js
 ```
 
 ---
 # Exercise
 Start your own project
-```
+```shell
 mkdir ex-express
 cd ex-express
 npm init
@@ -53,11 +53,11 @@ and now check `localhost:3000` on your browser.
 ---
 # Responding to requests
 - Routes are declared as
-```
+```javascript
 app.METHOD(PATH, HANDLER)
 ```
 for example
-```
+```javascript
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
@@ -67,19 +67,19 @@ app.get('/', (req, res) => {
 # Paths
 Paths can be:
 - Strings
-```
+```javascript
 app.get('/path', ..);
 ```
 - Path pattern (based on [path-to-regexp](https://www.npmjs.com/package/path-to-regexp))
-```
+```javascript
 app.get('/path/:id', ..);
 ```
 - Regexps (Regular expressions)
-```
+```javascript
 app.get(/\path1/|\/path2/g, ..);
 ```
 - Array
-```
+```javascript
 app.get(['/path1', '/path2'], ..);
 ```
 
@@ -89,7 +89,7 @@ app.get(['/path1', '/path2'], ..);
     - `req`: Information, such as parameters, data and cookies, about the request 
     - `res`: Response object to construct and send the response back
 - Example
-```
+```javascript
 app.get('/', (req, res) => {
     const ip = req.ip;
     res.send(`Hello ${ip}`);
@@ -141,7 +141,7 @@ Read the [Response documentation](http://expressjs.com/en/4x/api.html#res) and f
 - Works mostly like application as you can register routes and middleware
 - Missing for example view engines and `listen` method
 - Can be mount under certain path:
-```
+```javascript
 const router = express.Router();
 router.get('/users', (req, res) => {
     res.send('Hello from router!');
@@ -165,7 +165,7 @@ Create own router and mount it to `/routed`. The router itself should respond to
     - Call the next middleware in the stack
 - Middleware is executed in the registration order
 - Middleware is registered with `use`
-```
+```javascript
 app.use((req, res, next) => {
     req.started = Date.now();
     next();
@@ -175,7 +175,7 @@ app.use((req, res, next) => {
 ---
 # Chaining handlers
 - `next` will trigger the next handler
-```
+```javascript
 app.use((req, res, next) => {
     console.log('A');
     next();
@@ -194,7 +194,7 @@ Logs `ABC`
 ---
 # Mounting
 Middleware can also be mounted on certain paths so it won't be ran on every request:
-```
+```javascript
 app.use('/middleware', (req, res, next) => {
     console.log('Middleware used.');
     next();
@@ -205,7 +205,7 @@ app.use('/middleware', (req, res, next) => {
 # Example: JSON body parser
 - [body-parser](https://github.com/expressjs/body-parser) implements one middleware for parsing JSON etc.
 - Usage:
-```
+```javascript
 const bodyParser = require('body-parser');
 app.use(bodyParset.json());
 ```
@@ -246,7 +246,7 @@ Files can now be accessed as `localhost:3000/my.txt`
 ---
 # Serving static files with prefix
 - To serve static files with path prefix, use the normal middleware path registration:
-```
+```javascript
 app.use('public', express.static('public'));
 ```
 resources are now available via `localhost:3000/public/my.txt`
@@ -254,7 +254,7 @@ resources are now available via `localhost:3000/public/my.txt`
 ---
 # Serving static files from multiple folders
 - For multiple static file folders, `express.static` middleware can be called multiple times:
-```
+```javascript
 app.use(express.static('public'));
 app.use(express.static('files'));
 ```
@@ -274,7 +274,7 @@ app.use((err, req, res, next) => {
 
 ---
 # Default error handling
-```
+```javascript
 app.get('/error', (req, res, next) => {
     next('Random error');
 });
@@ -305,7 +305,7 @@ Enable debug mode and find from the log generated
 ---
 # Catch-all route
 To catch all requests that don't match any route, wildcard route (`*`) can be used:
-```
+```javascript
 app.get('*', (req, res, next) => {
     next(`No matching path was found`);
 });
@@ -328,7 +328,7 @@ Make a catch-all route that dispatches event to custom error handler that sends 
 ---
 # Example: Pug (formerly called Jade)
 _view1.pug_
-```
+```jade
 html
   head
     title= title
@@ -337,7 +337,7 @@ html
 ```
 
 _index.js_
-```
+```javascript
 app.set('view engine', 'pug');
 app.get('/view1', (req, res) => {
   res.render('view1', { title: 'Page title', message: 'Message!' });
@@ -352,7 +352,7 @@ Find out what template engines there are, pick one and use it to render. *Pug is
 # Express generator
 - Generator to scaffold a new Express.js project
 - Usage:
-```
+```shell
 npm install -g express-generator
 express MY_PROJECT
 cd MY_PROJECT

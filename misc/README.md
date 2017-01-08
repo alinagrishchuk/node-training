@@ -25,7 +25,7 @@
 - [node-supervisor](https://github.com/petruisfan/node-supervisor) looks for file changes and on change reloads the application automatically
 - Supports debugging
 - Usage:
-```
+```shell
 npm install supervisor -g
 supervisor index.js
 ```
@@ -44,7 +44,7 @@ supervisor index.js
 # Authentication in Express.js
 - Implementing security-related things yourself is generally not smart
 - Still, for the sake of example, authentication can be implemented as Express.js middleware:
-```
+```javascript
 app.use((req, res, next) => {
     if (req.query.token === 'SECRET_TOKEN_TOKEN') {
         next();
@@ -65,12 +65,12 @@ app.use((req, res, next) => {
 ---
 # Passport.js - Username and password authentication (1)
 Install:
-```
+```shell
 npm install --save passport
 ```
 
 Register the strategy:
-```
+```javascript
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 passport.use(new LocalStrategy(
@@ -88,7 +88,7 @@ app.use(passport.initialize());
 ---
 # Passport.js - Username and password authentication (2)
 Login route:
-```
+```javascript
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
@@ -99,7 +99,7 @@ app.post('/login',
 ---
 # Token-based authentication
 Ready strategy for token-basen authentication is available with `passport-localapikey` module:
-```
+```javascript
 passport.use(new LocalAPIKeyStrategy(
   (apikey, done) => {
     if (apikey !== process.env.TOKEN) { return done(null, false); }
@@ -131,11 +131,11 @@ passport.use(new LocalAPIKeyStrategy(
 # Compression
 To enable Gzip/deflate compression, `compression` can be used
 
-```
+```shell
 npm install --save compression
 ```
 
-```
+```javascript
 const compression = require('compression');
 app.use(compression);
 ```
@@ -157,18 +157,18 @@ app.use(compression);
 ---
 # Morgan - Usage
 Installation:
-```
+```shell
 npm install --save morgan
 ```
 
 Usage with Express.js:
-```
+```javascript
 const morgan = require('morgan');
 app.use(morgan('combined'));
 ```
 
 `morgan('combined')` also accepts second parameter that is the options:
-```
+```javascript
 const fs = require('fs');
 const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a'});
 morgan('combined', {
@@ -201,12 +201,12 @@ Add access logging for your application to file `access.log`. Log only if respon
 ---
 # Winston - Usage
 Installation: 
-```
+```shell
 npm install --save winston
 ```
 
 Usage:
-```
+```javascript
 const winston = require('winston');
  
 winston.log('info', 'Hello distributed log files!');
@@ -217,7 +217,7 @@ winston.log('debug', 'Now my debug messages are written to console!');
 ```
 
 Default logger is console, to change for file use `winston.configure`:
-```
+```javascript
 winston.configure({
     transports: [
         new (winston.transports.File)({ filename: 'somefile.log' })
@@ -295,23 +295,23 @@ worker: node worker.js
 ---
 # Helmet - Usage
 Installation: 
-```
+```shell
 npm install helmet --save
 ```
 
 Basic usage:
-```
+```javascript
 const helmet = require('helmet');
 app.use(helmet());
 ```
 
 `helmet()` applies all default measures. To use only some, enable only those:
-```
+```javascript
 app.use(helmet.noCache())
 app.use(helmet.frameguard())
 ```
 or disable some:
-```
+```javascript
 app.use(helmet({
   frameguard: false
 }));
@@ -339,12 +339,12 @@ Enable every default module of Helmet but the `X-Download-Options` header settin
 ---
 # CORS - Usage
 Installation:
-```
+```shell
 npm install --save cors
 ```
 
 Enable for all requests:
-```
+```javascript
 const cors = require('cors');
 app.use(cors());
 ```
@@ -357,7 +357,7 @@ Implement CORS so that your application only allows CORS for POST on path `/cors
 # Dependency security
 - "Security of your app is only as strong as the “weakest link” in your dependencies."
 - To check your dependencies for known vulnerabilities, `nsp` can be used
-```
+```shell
 npm i nsp -g
 nsp check
 ```
@@ -384,11 +384,11 @@ Check your project for known vulnerabilities
     
 ---
 # JSON template engine - Installation
-```
+```shell
 npm install --save express-json-views
 ```
 
-```
+```javascript
 const viewEngine = require('express-json-views');
 app.engine('json', viewEngine({
        helpers: require('./views/helpers')
@@ -399,7 +399,7 @@ app.set('view engine', 'json');
 
 ---
 # JSON Template engine - Views
-```
+```json
 {
     "id": {},
     "slug": {
