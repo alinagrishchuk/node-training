@@ -351,3 +351,15 @@ npm start
 ```
 - Generates ES5 code (`var`, `function`), but ES6 support on almost ready [Pull Request](https://github.com/expressjs/generator/pull/146)
 - Supports also template engines
+
+---
+# Code organization
+- *Really* opinionated area
+- Most common solution (?) is to divide the code as MVC ([blog post](https://www.terlici.com/2014/08/25/best-practices-express-structure.html)):
+    - `controllers/`: Controllers for respond to requests
+    - `models/`: Database models
+    - `views/`: Views (if the application isn't just returning JSON)
+    - `helpers/`: Helper utility
+    - `middlewares/`: The custom middleware for the application
+    - `spec/` or `tests/`: Tests with their helpers
+    - `app.js` or `index.js` or `server.js`: Application main file that boots up the Express.js
