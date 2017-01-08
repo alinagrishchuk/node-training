@@ -3,6 +3,7 @@
 ## Trainer
 - Roope Hakulinen
 - Working on EU funding applying & managing system for Ministry of Employment and the Economy (Työ- ja Elinkeinoministeriö)
+- Years of experience in enterprise JavaScript applications
 
 ## Slides
 Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.herokuapp.com/)
@@ -15,7 +16,7 @@ Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.he
 - package.json
 
 #### Afternoon
-- Express
+- Express.js
 
 ---
 
@@ -24,7 +25,8 @@ Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.he
 - Database
 
 #### Afternoon
-- Deploying
-- Optimizing
-- Security
-- Logging
+- Misc stuff such as:
+    - Deploying
+    - Optimizing
+    - Security
+    - Logging
