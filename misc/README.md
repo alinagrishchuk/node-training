@@ -288,9 +288,12 @@ worker: node worker.js
 - Use TLS
 
 ---
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+background-image: url(misc/helmet-modules.png)
 # Helmet
 - [Helmet](https://github.com/helmetjs/helmet) secures Express.js application by modifying multiple headers
-![Helmet modules](misc/helmet-modules.png "Helmet modules")
 
 ---
 # Helmet - Usage
@@ -328,6 +331,9 @@ Enable every default module of Helmet but the `X-Download-Options` header settin
 - Can be relaxed by enabling `Access-Control-*` headers
 
 ---
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
 background-image: url(misc/cors.png)
 # CORS - Flow
 
