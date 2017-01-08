@@ -284,6 +284,8 @@ worker: node worker.js
 # Security
 - Helmet 
 - CORS
+- Dependency security
+- Use TLS
 
 ---
 # Helmet
@@ -352,8 +354,27 @@ app.use(cors());
 Implement CORS so that your application only allows CORS for POST on path `/cors-enabled`.
 
 ---
+# Dependency security
+- "Security of your app is only as strong as the “weakest link” in your dependencies."
+- To check your dependencies for known vulnerabilities, `nsp` can be used
+```
+npm i nsp -g
+nsp check
+```
+
+---
+# Exercise
+Check your project for known vulnerabilities
+
+---
+# Use TLS
+- TLS is the new progression of SSL
+- Express.js can handle HTTPS [relatively simply](http://stackoverflow.com/a/5998795/1744702)
+- Generally better to implement TLS in reverse-proxy such as Nginx
+
+---
 # JSON template engine
-- Express.js can send JSON out-of-the-box
+- Express.js can send JSON out-of-the-box (`res.json({})`)
 - Sometimes there is a need for more granular control
 - Example use cases:
     - Filtering our sensitive user data like passwords
