@@ -329,7 +329,7 @@ Enable every default module of Helmet but the `X-Download-Options` header settin
 
 ---
 # CORS - Flow
-![CORS flow](misc/cors.png "CORS flow")
+![CORS flow](misc/cors.png =600x500)
 
 ---
 # CORS with Express.js
