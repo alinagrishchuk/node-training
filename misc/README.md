@@ -288,12 +288,14 @@ worker: node worker.js
 - Use TLS
 
 ---
+# Helmet
+- [Helmet](https://github.com/helmetjs/helmet) secures Express.js application by modifying multiple headers
+
+---
 background-position: center;
 background-repeat: no-repeat;
 background-size: contain;
 background-image: url(misc/helmet-modules.png)
-# Helmet
-- [Helmet](https://github.com/helmetjs/helmet) secures Express.js application by modifying multiple headers
 
 ---
 # Helmet - Usage
@@ -335,7 +337,6 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: contain;
 background-image: url(misc/cors.png)
-# CORS - Flow
 
 ---
 # CORS with Express.js
