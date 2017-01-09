@@ -8,8 +8,6 @@
 - [Databases](databases/README.md)
 - [Misc](misc/README.md)
 
-[Useful Resources](useful-resources/README.md)
-
 ### Open training slides on your own computer
 
     npm install -g live-server
