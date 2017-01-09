@@ -325,7 +325,7 @@ describe('', () => {
 
 ---
 # Exercise
-- Write a function `getData` (in test file or as separate file) that returns data as `{persons: [{name: 'obj1', name: 'obj2'}]}`.
+- Write a function `getData` (in test file or as separate file) that returns data as `{persons: [{name: 'obj1'}, {name: 'obj2'}]}`.
 - To test your function, check that it returns an object with list `persons` of length 2.
 
 ---
