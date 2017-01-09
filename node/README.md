@@ -57,7 +57,7 @@ Create file `script.js` that simply calls `console.log('It is alive')`, and run 
 
 ---
 # Accessing the environment variables
-- Available as `process.env.VARIABLE`:
+Available as `process.env.VARIABLE`:
 ```javascript
 console.log(process.env.VARIABLE);
 ```
@@ -78,6 +78,12 @@ Modify the previously created `script.js` to print `SECRET_TOKEN` given as envir
 # npm
 - npm (Node Package Manager) is the package manager for Node.js
 - Has the most modules of any package manager for any language
+- Comes along with Node.js when installed
+- Available on command line with `npm` command
+- Can update itself with
+```
+npm install -g npm
+```
 
 ---
 # Global vs. local packages
