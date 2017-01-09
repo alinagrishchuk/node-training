@@ -125,9 +125,6 @@ passport.use(new LocalAPIKeyStrategy(
 - Supports Redis, MongoDB and in-memory backends with also 3rd-party backends for firebase, knex, etc.
 
 ---
-# JWT
-
----
 # Compression
 To enable Gzip/deflate compression, `compression` can be used
 
