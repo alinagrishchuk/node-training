@@ -14,7 +14,7 @@
 - "Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world."
 
 ---
-# History
+# Node.js History
 - Initial release May 27, 2009 by Ryan Dahl
 - Latest stable versions 7.3.0 & 6.9.2 (December 2016)
 - Version jump from 0.12.x to 4.x
@@ -229,14 +229,13 @@ npm install --save express@4.14.0
 ```
 which installs the new package to `node_modules` and adds it to the `package.json`.
 
-`--saveDev` to store as `devDepencency`.
+`--save-dev` to save in `devDepencencies`.
 
 Using the dependencies: `const express = require('express')`
 
 ---
 # Custom npm scripts
-`package.json` can contain field called `scripts` that contains an object with custom scripts to be executed with `npm run SCRIPT_NAME`.
- 
+`scripts` field in `package.json` can contain custom scripts
 ```shell
 {
     "scripts": {
@@ -244,6 +243,37 @@ Using the dependencies: `const express = require('express')`
         "create-some-folder": "mkdir some && cd some && mkdir other"
     }
 }
+```
+
+To run these, use:
+```shell
+npm run test
+npm run create-some-folder
+```
+
+Certain scripts (e.g. `start` and `test`) are available without the run like
+```shell
+npm start
+npm run start
+```
+
+---
+# Custom npm scripts
+Scripts can also access CLI of the local modules installed. Suppose we have ran
+```shell
+npm install --save-dev jasmine
+```
+we could now use 
+```json
+"scripts": {
+  "test": "jasmine"
+}
+```
+even though `jasmine` isn't globally installed. 
+
+Same could also be achieved by accessing the CLI script with node:
+```shell
+node ./node_modules/jasmine/bin/jasmine.js
 ```
 
 ---
@@ -286,18 +316,26 @@ Using the dependencies: `const express = require('express')`
 Installation:
 ```shell
 npm install --save-dev jasmine
-jasmine init
+node ./node_modules/bin/jasmine.js init
 ```
 Initializing will create `jasmine.json` for configuration such as test file look-up path
 
-Run jasmine tests:
-```shell
-jasmine
-``` 
+Run jasmine tests as `test` script:
+
+_package.json_
+```json
+"scripts": {
+    "test": "jasmine"
+}
+```
+
+```
+npm test
+```
 
 ---
 # Exercise
-Run the above commands to find out there aren't any test cases yet
+Run the above commands to find out there aren't any test cases yet. Also have a look at the `jasmine.json` to understand where and with what name the tests should be written.
 
 ---
 # Jasmine test case
