@@ -113,6 +113,14 @@ const _ = require('underscore')
 ```
 
 ---
+# Exercise
+## Global package
+Install Express generator globally (package name: `express-generator`), and use it to generate a project (command: `express myapp`).
+
+## Local package
+Install underscore locally and use it to modify your logging string somehow. Use underscore's [max](http://underscorejs.org/#max) function to select max age from array `[{age: 24}, {age: 45}, {age: 4}, {age: 20}]`.
+
+---
 # Splitting code between multiple files
 - `module.exports` is used to declare what is exported from the file
 
