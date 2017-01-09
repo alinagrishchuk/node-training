@@ -281,6 +281,16 @@ worker: node worker.js
 ```
 
 ---
+# Heroku CLI
+- Heroku also has a toolbelt available as `heroku` commands
+- Can be used to scale, see logs etc.
+- Seeing the logs:
+
+```shell
+heroku logs -a APP_NAME
+```
+
+---
 # Security
 - Helmet 
 - CORS
