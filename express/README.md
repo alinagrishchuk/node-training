@@ -34,7 +34,7 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
 });
 
 app.listen(3000);
@@ -67,7 +67,7 @@ app.METHOD(PATH, HANDLER)
 where `METHOD` is the HTTP verb such as `GET` or `POST`. For example
 ```javascript
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
 });
 ```
 
@@ -142,6 +142,7 @@ app.get('/', (req, res) => {
 ---
 # Exercise
 Read the [Response documentation](http://expressjs.com/en/4x/api.html#res) and find out which method should be used to answer based on the `Accept` header. 
+Choose two formats for which you answer with response of same type (JSON for JSON request etc.)
 
 ---
 # Routers
