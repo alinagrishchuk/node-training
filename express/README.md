@@ -64,7 +64,7 @@ and now check `localhost:3000` on your browser.
 ```javascript
 app.METHOD(PATH, HANDLER)
 ```
-for example
+where `METHOD` is the HTTP verb such as `GET` or `POST`. For example
 ```javascript
 app.get('/', (req, res) => {
     res.send('Hello World!');
