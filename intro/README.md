@@ -30,3 +30,10 @@ Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.he
     - Optimizing
     - Security
     - Logging
+    
+---
+# ES6 features needed
+- Lambda arrow functions
+- `map`, `filter` and `reduce` functions
+- `const` and `let` over `var`
+- Promises
