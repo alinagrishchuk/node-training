@@ -61,7 +61,7 @@
 
 ---
 # Mongoose
-- MongoDB object modeling for Node.js
+- MongoDB object modeling module for Node.js
 - Provides a schema-based solution to model data
 - Built-in type casting, validation, query building, business logic hooks etc.
 
@@ -77,6 +77,17 @@ mongoose.connect('mongodb://localhost/test').then(() => {
 ```
 - In case connection is lost, Mongoose automatically reconnects and executes all commands in buffer
 - Format for URL is: `mongodb://[username:password@]host1[:port1][/[database]]`
+
+---
+# Exercise
+Connect to your database.
+
+```
+mongodb://ilkka:ilkka@ds157158.mlab.com:57158/node-ilkka
+mongodb://matti:matti@ds157158.mlab.com:57158/node-matti
+mongodb://olli:olli@ds157158.mlab.com:57158/node-olli
+mongodb://patrick:patrick@ds157268.mlab.com:57268/node-patrick
+```
 
 ---
 # Schemas
@@ -113,6 +124,15 @@ const blogSchema = new Schema({
     - Array
 
 ---
+# Exercise
+Define a schema for cat with following attributes:
+- Name (string)
+- Age (number)
+- Gender (string, male or female)
+- Color (string)
+- Weight (number)
+
+---
 # Models
 - To use schema, we need to create a model with the schema specified with `mongoose.model(modelName, schema)`:
 
@@ -120,6 +140,33 @@ const blogSchema = new Schema({
 const Blog = mongoose.model('Blog', blogSchema);
 ```
 - Each instance of model is a document
+- Only way to store and retrieve data to/from database
+
+---
+# Creating document
+To create document, call `create` can be called on model:
+```javascript
+Blog.create({ hidden: false }).then(post => {
+  console.log(post.id);
+});
+```
+
+---
+# Exercise
+On POST `/cats` create a new cat with information that comes as body. 
+
+---
+# Fetching all documents
+The rich query syntax can be used to fetch only the wanted documents:
+```javascript
+Blog.find({ hidden: false }).where('date').gt(oneYearAgo).exec().then(data => {
+    console.log(data);
+});
+```
+
+---
+# Exercise
+Respond to GET `/cats` with JSON containing all the *male* cats that have *weight over 10kg* and are *older than 10 years*.
 
 ---
 # Instance methods
