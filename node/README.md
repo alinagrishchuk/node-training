@@ -62,7 +62,7 @@ Available as `process.env.VARIABLE`:
 console.log(process.env.VARIABLE);
 ```
 
-On Windows you can set the environment variables for script as:
+You can set the environment variables for script as:
 ```shell
 VARIABLE=ABC node my-script.js
 ```
@@ -102,6 +102,7 @@ Global:
 npm install -g angular-cli
 ng new MY_PROJECT
 ```
+(You might need `sudo` for `npm install -g` on Linux and OS X)
 
 Local:
 ```shell
