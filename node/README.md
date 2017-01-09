@@ -1,4 +1,9 @@
 # Node.js
+- What is it?
+- npm
+- Splitting code in multiple files
+- Package.json
+- Testing
 
 ---
 
@@ -101,7 +106,7 @@ const _ = require('underscore')
 ```
 
 ---
-# Sharing code between multiple files
+# Splitting code between multiple files
 - `module.exports` is used to declare what is exported from the file
 
 _file1.js_
@@ -122,7 +127,7 @@ console.log(getText());
 ```
 
 ---
-# Sharing code between files
+# Splitting code between files
 - Often the exports are objects to allow multiple things to be exported:
 
 _get-methods.js_
@@ -140,7 +145,7 @@ console.log(getMethods.getA());
 ```
 
 ---
-# Sharing code between files
+# Splitting code between files
 - Defining all exports with `module.exports` at the bottom of file is somewhat clear solution
 - What Node.js does internally, is that it includes the following line at the start of each file:
 ```javascript
