@@ -284,7 +284,7 @@ Using the dependencies: `const express = require('express')`
 # Jasmine - Usage
 Installation:
 ```shell
-npm install --save jasmine
+npm install --save-dev jasmine
 jasmine init
 ```
 Initializing will create `jasmine.json` for configuration such as test file look-up path
