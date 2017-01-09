@@ -68,6 +68,7 @@
 ---
 # Connecting
 - Connecting is simple:
+
 ```javascript
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test').then(() => {
@@ -81,6 +82,7 @@ mongoose.connect('mongodb://localhost/test').then(() => {
 # Schemas
 - Declares the shape of data for certain collection
 - Example:
+
 ```javascript
 const Schema = mongoose.Schema;
 
@@ -113,16 +115,17 @@ const blogSchema = new Schema({
 ---
 # Models
 - To use schema, we need to create a model with the schema specified with `mongoose.model(modelName, schema)`:
+
 ```javascript
 const Blog = mongoose.model('Blog', blogSchema);
 ```
 - Each instance of model is a document
 
 ---
----
 # Instance methods
 - Models have some built-in instance methods
 - Models can also have custom instance methods:
+
 ```javascript
 blogSchema.methods.findFromSameDate = (cb) => {
   return this.model('Blog').find({ date: this.date }, cb);
@@ -138,6 +141,7 @@ post1.findFromSameDate((err, posts) => {
 ---
 # Static methods
 - Can be used for example to perform more sophisticated lookups:
+
 ```javascript
 blogSchema.statics.findByTitle = (title, cb) => {
   return this.find({ title: new RegExp(title, 'i') }, cb);
@@ -151,6 +155,7 @@ Blog.findByTitle('My title', (err, posts) => {
 ---
 # Query helpers
 - Query helpers allow chained query building:
+
 ```javascript
 blogSchema.query.byTitle = (title) => {
   return this.find({ title: new RegExp(title, 'i') });
@@ -167,6 +172,7 @@ Blog.find().byTitle('My title').exec((err, posts) => {
 - Queries do return object with `.then()` but are not actual fully-fledged promises (use `.exec()` to obtain one)
 - For backwards-compatibility reasons, Mongoose returns [mpromise](https://www.npmjs.com/package/mpromise) promises by default
 - Can be changed to more modern solutions such as native ES6 promises:
+
 ```javascript
 mongoose.Promise = global.Promise; // ES6 promises
 mongoose.Promise = require('q').Promise; // q library promises
