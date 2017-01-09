@@ -427,3 +427,14 @@ describe("A spy, when configured to call through", () => {
     });
 });
 ```
+
+---
+# Exercise
+Declare on object called `fetcher` with two functions:
+- `fetch`: return the value returned by `this.fetchInternal(n)` where `n` is number given as parameter
+- `fetchInternal`: returns array of `n` items each one bigger than previous one
+ 
+Test that when fetch is called:
+- `fetch` returns list of correct length 
+- `fetchInternal` is called with parameter that is given 
+- `fetchInternal` is called exactly once
