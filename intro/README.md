@@ -37,3 +37,4 @@ Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.he
 - `map`, `filter` and `reduce` functions
 - `const` and `let` over `var`
 - Promises
+- Template strings
