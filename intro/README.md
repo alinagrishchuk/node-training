@@ -9,22 +9,22 @@
 Available at [gofore-node-training.herokuapp.com](http://gofore-node-training.herokuapp.com/)
 
 ---
-
-## Agenda - Day 1
-#### Morning
+# Agenda - Day 1
+## Morning
 - Node.js
 - package.json
+- npm
+- Testing
 
-#### Afternoon
+## Afternoon
 - Express.js
 
 ---
-
-## Agenda - Day 2
-#### Morning
+# Agenda - Day 2
+## Morning
 - Database
 
-#### Afternoon
+## Afternoon
 - Misc stuff such as:
     - Deploying
     - Optimizing
