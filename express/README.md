@@ -67,7 +67,7 @@ app.METHOD(PATH, HANDLER)
 where `METHOD` is the HTTP verb such as `GET` or `POST`. For example
 ```javascript
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+  res.send('Hello World!');
 });
 ```
 
@@ -99,8 +99,8 @@ app.get(['/path1', '/path2'], ..);
 - Example
 ```javascript
 app.get('/', (req, res) => {
-    const ip = req.ip;
-    res.send(`Hello ${ip}`);
+  const ip = req.ip;
+  res.send(`Hello ${ip}`);
 });
 ```
 - If no response is sent, the request will hang (browser waits until timeout)
@@ -152,7 +152,7 @@ Read the [Response documentation](http://expressjs.com/en/4x/api.html#res) and f
 ```javascript
 const router = express.Router();
 router.get('/users', (req, res) => {
-    res.send('Hello from router!');
+  res.send('Hello from router!');
 });
 app.use('/myApi', router);
 ```
@@ -175,8 +175,8 @@ Create own router and mount it to `/routed`. The router itself should respond to
 - Middleware is registered with `use`
 ```javascript
 app.use((req, res, next) => {
-    req.started = Date.now();
-    next();
+  req.started = Date.now();
+  next();
 });
 ```
 
@@ -185,15 +185,15 @@ app.use((req, res, next) => {
 - `next` will trigger the next handler
 ```javascript
 app.use((req, res, next) => {
-    console.log('A');
-    next();
+  console.log('A');
+  next();
 });
 app.use((req, res, next) => {
-    console.log('B');
-    next();
+  console.log('B');
+  next();
 });
 app.get('/foo', () => {
-    console.log('C');
+  console.log('C');
 });
 ```
 Logs `ABC`
@@ -204,8 +204,8 @@ Logs `ABC`
 Middleware can also be mounted on certain paths so it won't be ran on every request:
 ```javascript
 app.use('/middleware', (req, res, next) => {
-    console.log('Middleware used.');
-    next();
+  console.log('Middleware used.');
+  next();
 });
 ```
 
@@ -274,7 +274,7 @@ app.use(express.static('files'));
 - Custom error handlers can be registered by providing middleware with 4 parameters:
 ```javascript
 app.use((err, req, res, next) => {
-    console.log(`Error happened: ${err}`);
+  console.log(`Error happened: ${err}`);
 });
 ```
 - Can be chained with `next` like normal middleware handlers
@@ -284,12 +284,12 @@ app.use((err, req, res, next) => {
 # Default error handling
 ```javascript
 app.get('/error', (req, res, next) => {
-    next('Random error');
+  next('Random error');
 });
 
 app.use((err, req, res, next) => {
-    console.error(`ERROR HAPPENED: ${err}`);
-    next(`Error: ${err}`);
+  console.error(`ERROR HAPPENED: ${err}`);
+  next(`Error: ${err}`);
 });
 ```
 prints `Error: Random error`
@@ -321,7 +321,7 @@ Enable debug mode and find from the log generated
 To catch all requests that don't match any route, wildcard route (`*`) can be used:
 ```javascript
 app.get('*', (req, res, next) => {
-    next(`No matching path was found`);
+  next(`No matching path was found`);
 });
 ```
 sends `No matching path was found` to client.
@@ -345,9 +345,9 @@ _view1.pug_
 ```jade
 html
   head
-    title= title
+  title= title
   body
-    h1= message
+  h1= message
 ```
 
 _index.js_
