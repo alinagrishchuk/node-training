@@ -178,6 +178,7 @@ So make sure you answer to GET `localhost:3000/routed/path` with 200 OK response
     - Call the next middleware in the stack
 - Middleware is executed in the registration order
 - Middleware is registered with `use`
+
 ```javascript
 app.use((req, res, next) => {
   res.locals.started = Date.now();
@@ -188,6 +189,7 @@ app.use((req, res, next) => {
 ---
 # Chaining handlers
 - `next` will trigger the next handler
+
 ```javascript
 app.use((req, res, next) => {
   console.log('A');
@@ -207,6 +209,7 @@ Logs `ABC`
 ---
 # Mounting
 Middleware can also be mounted on certain paths so it won't be ran on every request:
+
 ```javascript
 app.use('/middleware', (req, res, next) => {
   console.log('Middleware used.');
