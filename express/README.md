@@ -231,7 +231,7 @@ Write your own middleware that..
 
 ---
 # Exercise
-As noted earlier, each router can have its own middleware, apply middleware to the previously created router to log each request for it.
+As noted earlier, each router can have its own middleware, apply middleware to the previously created router to log each request for it. Check that middleware is only ran for requests routed by this router.
 
 ---
 # Request body
