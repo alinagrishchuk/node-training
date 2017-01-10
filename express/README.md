@@ -215,6 +215,12 @@ app.use('/middleware', (req, res, next) => {
 ```
 
 ---
+# Request body
+- By default request body is `undefined`
+- Will be populated when body parsing middleware is used
+- Most usual body parsing middleware are body-parser (raw, text, JSON, etc.) and multer (_application/x-www-form-urlencoded_)
+
+---
 # Example: JSON body parser
 - [body-parser](https://github.com/expressjs/body-parser) implements one middleware for parsing JSON etc.
 - Usage:
