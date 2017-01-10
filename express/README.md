@@ -164,8 +164,9 @@ Now available in `localhost:3000/myApi/users`.
 
 ---
 # Exercise
-Create own router and mount it to `/routed`. The router itself should respond to
-- GET `/path` with HTTP status 200
+Create own router and mount it to `/routed`. The router itself should respond to GET `/path` with HTTP status 200.
+
+So make sure you answer to path `localhost:3000/routed/path` with 200 OK response.
 
 ---
 # Middleware
