@@ -60,11 +60,14 @@ and now check `localhost:3000` on your browser.
 
 ---
 # Responding to requests
-- Routes are declared as
+Routes are declared as
+
 ```javascript
 app.METHOD(PATH, HANDLER)
 ```
+
 where `METHOD` is the HTTP verb such as `GET` or `POST`. For example
+
 ```javascript
 app.get('/', (req, res) => {
     res.send('Hello World!');
