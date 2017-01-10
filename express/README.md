@@ -180,7 +180,7 @@ So make sure you answer to GET `localhost:3000/routed/path` with 200 OK response
 - Middleware is registered with `use`
 ```javascript
 app.use((req, res, next) => {
-  req.started = Date.now();
+  res.locals.started = Date.now();
   next();
 });
 ```
@@ -232,12 +232,6 @@ Write your own middleware that..
 ---
 # Exercise
 As noted earlier, each router can have its own middleware, apply middleware to the previously created router to log each request for it. Check that middleware is only ran for requests routed by this router.
-
----
-# Request body
-- By default request body is `undefined`
-- Will be populated when body parsing middleware is used
-- Most usual body parsing middleware are body-parser (raw, text, JSON, etc.) and multer (_application/x-www-form-urlencoded_)
 
 ---
 # Available middleware
