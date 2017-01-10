@@ -388,3 +388,27 @@ npm start
     - `middlewares/`: The custom middleware for the application
     - `spec/` or `tests/`: Tests with their helpers
     - `app.js` or `index.js` or `server.js`: Application main file that boots up the Express.js
+
+---
+# Exercise
+Initialize a new project called `cats-api` in which you simply boot up Express.js server for now:
+
+```shell
+mkdir cats-api
+cd cats-api
+npm init
+npm install --save express
+```
+
+```javascript
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+app.listen(3000);
+```
+
+Make sure the server answers in `http://localhost:3000/`.

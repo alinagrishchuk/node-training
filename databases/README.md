@@ -64,7 +64,26 @@
 - MongoDB object modeling module for Node.js
 - Provides a schema-based solution to model data
 - Built-in type casting, validation, query building, business logic hooks etc.
+- Methods return a promise, though callbacks can be used too:
 
+With promises (recommended)
+```javascript
+mongoose.connect(url).then(() => {
+    console.log('Connected');
+}, () => {
+    console.error('Connecting to Mongo failed');
+});
+```
+or with callback
+```javascript
+mongoose.connect(url, (error) => {
+    if (error) {
+        console.error('Connecting to Mongo failed');
+        return;
+    }
+    console.log('Connected');
+});
+```
 ---
 # Connecting
 - Connecting is simple:
@@ -77,11 +96,13 @@ mongoose.connect('mongodb://localhost/test').then(() => {
 ```
 - In case connection is lost, Mongoose automatically reconnects and executes all commands in buffer
 - Format for URL is: `mongodb://[username:password@]host1[:port1][/[database]]`
+- Put all actual code inside the `connect` callback
 
 ---
 # Exercise
-Connect to your database.
+Connect to your database. Only boot Express.js (call `app.listen`) once database connection has been obtained.
 
+Database addresses:
 ```
 mongodb://ilkka:ilkka@ds157158.mlab.com:57158/node-ilkka
 mongodb://matti:matti@ds157158.mlab.com:57158/node-matti
@@ -153,11 +174,20 @@ Blog.create({ hidden: false }).then(post => {
 
 ---
 # Exercise
-On POST `/cats` create a new cat with information that comes as body. 
+On POST `/cats` create a new cat with data that comes as body argument. 
 
 ---
 # Fetching all documents
-The rich query syntax can be used to fetch only the wanted documents:
+To fetch all documents of certain model use `find()` without parameters
+```javascript
+Blog.find().exec().then((blogs) => {
+    console.log(`Got ${blogs.length} blogs`);
+});
+```
+
+---
+# Fetching specific documents
+The rich query syntax can be used to fetch only the documents fulfilling conditions:
 ```javascript
 Blog.find({ hidden: false }).where('date').gt(oneYearAgo).exec().then(data => {
     console.log(data);
@@ -218,6 +248,7 @@ Blog.find().byTitle('My title').exec((err, posts) => {
 - All async operations return promises
 - Queries do return object with `.then()` but are not actual fully-fledged promises (use `.exec()` to obtain one)
 - For backwards-compatibility reasons, Mongoose returns [mpromise](https://www.npmjs.com/package/mpromise) promises by default
+- `mpromise` will be removed in Mongoose 5 and will be replaced by ES6 promises, if available, and otherwise by [Bluebird promises](https://github.com/petkaantonov/bluebird)
 - Can be changed to more modern solutions such as native ES6 promises:
 
 ```javascript
