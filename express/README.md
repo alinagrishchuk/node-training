@@ -315,11 +315,11 @@ Write your own error handler, that catches 404 and shows error message
 To see internal logging of Express.js, launch the application as:
 - Windows: 
 ```shell
-set DEBUG=express:* & node index.js
+DEBUG=express:* node index.js
 ```
 - Linux: 
 ```
-DEBUG=express:* node index.js
+set DEBUG=express:* & node index.js
 ```
 
 ---
