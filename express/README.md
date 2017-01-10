@@ -227,7 +227,7 @@ app.use(bodyParset.json());
 # Exercise
 Write your own middleware that..
 - Sends HTTP status 403, if query parameter `foo` is not set to `bar`
-- Stores start time of request, and then waits for one second (`setTimeout`) and then prints it
+- Stores start time of request, and then waits for one second (`setTimeout`) and then sends back to user
 
 ---
 # Exercise
@@ -272,6 +272,10 @@ app.use(express.static('public'));
 app.use(express.static('files'));
 ```
 - If there's a file with same name, first one takes precedence (file in `public` in example)
+
+---
+# Exercise
+Serve static files from `public/` folder. Put some file inside it and test that you can access it on your browser.
 
 ---
 # Error handling
